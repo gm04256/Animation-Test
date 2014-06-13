@@ -18,6 +18,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+	// get elements with tag
+	UILabel* outerLabel = (UILabel*)[self.view viewWithTag:1];
+	UIView* containerView = [self.view viewWithTag:2];
+	UILabel* innerLabel = (UILabel*)[self.view viewWithTag:3];
+	
+	
 }
 
 - (void)didReceiveMemoryWarning
