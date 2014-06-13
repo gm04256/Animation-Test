@@ -14,15 +14,37 @@
 
 @implementation BGMViewController
 
-- (void)viewDidLoad
+- (IBAction)doTransformation:(id)sender
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-	
 	// get elements with tag
 	UILabel* outerLabel = (UILabel*)[self.view viewWithTag:1];
 	UIView* containerView = [self.view viewWithTag:2];
 	UILabel* innerLabel = (UILabel*)[self.view viewWithTag:3];
+	
+	// translate the outer label's layer
+	NSLog(@"Frame of outerLabel before layer translation: %@", NSStringFromCGRect(outerLabel.frame));
+	
+	CALayer* outerLayer = outerLabel.layer;
+	NSLog(@"anchorPoint: %f, %f, %f", outerLayer.anchorPoint.x, outerLayer.anchorPoint.y, outerLayer.anchorPointZ);
+	
+	//	CATransform3D translation = CATransform3DMakeTranslation(100, 100, 0);
+	//	[outerLayer setTransform:translation];
+	
+		CATransform3D rotation = CATransform3DMakeRotation(M_PI / 6, outerLayer.anchorPoint.x, outerLayer.anchorPoint.y, outerLayer.anchorPointZ);
+		[outerLayer setTransform:rotation];
+	
+//	CATransform3D scale = CATransform3DMakeScale(2, 2, 1);
+//	[outerLayer setTransform:scale];
+	//	CGAffineTransform affineScale = CATransform3DGetAffineTransform(scale);
+	//	[outerLayer setAffineTransform: affineScale];
+	
+	NSLog(@"Frame of outerLabel after layer translation: %@", NSStringFromCGRect(outerLabel.frame));
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
 	
 	
 }
